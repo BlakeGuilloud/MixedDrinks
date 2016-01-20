@@ -208,7 +208,7 @@ module.exports = Backbone.View.extend({
   },
   onSubmitIngredients: function(event){
     event.preventDefault();
-
+    $('.drinkList').html("");
     var drinkCollection = new DrinkCollection();
     drinkCollection.fetch().then(function(data) {
       // initialize a new array for the filtered data
@@ -217,6 +217,7 @@ module.exports = Backbone.View.extend({
         for (var i = 0; i < data.length; i++) {
           // sort through the keys within the objects and set nulls to empty strings
           // otherwise the templates would break
+          // thanks Charles for this type of loop
           for(var prop in data[i]){
             if (data[i][prop] == null){
               data[i][prop] = "";
@@ -291,10 +292,10 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   initialize: function () {
+
   },
 
   template: _.template(tmpl.navigation),
-
   render: function () {
     var markup = this.template({});
     this.$el.html(markup);
@@ -524,15 +525,11 @@ module.exports = Backbone.Router.extend ({
     new layoutView();
     $('#layoutView').find('.box').remove();
     $('#layoutView').find('.toTheLeft').addClass('hidden');
-    $('#layoutView').find('.profile').remove();
+    $('body').find('.profilebox').remove();
    },
-
-
   profilePage: function(){
     var favorites = new FavoriteCollection();
     favorites.fetch().then(function(data){
-      console.log(data);
-      console.log('MODELS', favorites);
       new FavoritesCollectionView({collection: favorites});
     });
     $('#side').html("");
@@ -546,18 +543,7 @@ module.exports = Backbone.Router.extend ({
       $('.headerbox').html(headerHTML.render().el);
       var profileHTML = new ProfileView();
       $('.profilebox').html(profileHTML.render().el);
-      $('.content').find('article').remove();
-
-
-    // var userHTML = new UserCollectionView();
-    // $('#side').html(userHTML.render().el);
-
-    // var favorites = new FavoriteCollection();
-    // favorites.fetch().then(function(data){
-    //   console.log('favorites data', data[0]);
-    //   new FavoritesCollectionView({collection: favorites});
-
-    // });
+      $('.drinkList').find('article').remove();
   },
  loginPage: function(){
    var loginHTML = new LoginView();
@@ -574,7 +560,7 @@ module.exports = {
     "<li><img src='http://www.fillmurray.com/460/300' /></li>",
     "<li><h2>User Name</h2></li>",
     "</ul>",
-    "<h3>Favorite Recipes</h3>",
+    // "<h3>Favorite Recipes</h3>",
     "<section id='recipes'>",
     "</section>",
     "</div>"
@@ -600,7 +586,7 @@ module.exports = {
   ].join(''),
   navigation: [
     "<ul id='nav'>",
-      "<li><h1>alcoh·me</h1></li>",
+      "<li><h1>alcoh<img src='https://d30y9cdsu7xlg0.cloudfront.net/png/76022-200.png'>me</h1></li>",
       "<li><a id='home' href='#home'>Home</a></li>",
       "<li><a id='profile' href='#profile'>My Profile</a></li>",
       "<li><a id='logout' href='#'>Logout</a></li>",
@@ -645,7 +631,7 @@ module.exports = {
  ].join(""),
  login:[
    "<div class='box'>",
-   "<h1 class='title'>alcoh·me</h1>",
+   "<h1 class='title'>alcoh<img src='https://d30y9cdsu7xlg0.cloudfront.net/png/76022-200.png'>me</h1></i>",
    "<input class='username' placeholder='username'></input>",
    "<input type='password' class='password initialPassword' placeholder='password'></input>",
    "<input type='password' class='password confirmPassword hidden' placeholder='confirm password'></input>",

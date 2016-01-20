@@ -7,10 +7,10 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   initialize: function () {
+
   },
 
   template: _.template(tmpl.navigation),
-
   render: function () {
     var markup = this.template({});
     this.$el.html(markup);

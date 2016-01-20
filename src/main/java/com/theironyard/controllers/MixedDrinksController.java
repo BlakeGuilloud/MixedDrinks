@@ -19,10 +19,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 /**
  * Created by Jack on 11/19/15.
@@ -115,7 +113,7 @@ public class MixedDrinksController {
 
     @RequestMapping("/login")
     public void login(HttpServletResponse response, HttpSession session, String username, String password) throws Exception {
-        User user = users.findOneByUsername(username);
+         User user = users.findOneByUsername(username);
         if (user == null) {
             response.sendRedirect("/register-user");
         }

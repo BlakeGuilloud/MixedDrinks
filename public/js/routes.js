@@ -26,15 +26,11 @@ module.exports = Backbone.Router.extend ({
     new layoutView();
     $('#layoutView').find('.box').remove();
     $('#layoutView').find('.toTheLeft').addClass('hidden');
-    $('#layoutView').find('.profile').remove();
+    $('body').find('.profilebox').remove();
    },
-
-
   profilePage: function(){
     var favorites = new FavoriteCollection();
     favorites.fetch().then(function(data){
-      console.log(data);
-      console.log('MODELS', favorites);
       new FavoritesCollectionView({collection: favorites});
     });
     $('#side').html("");
@@ -48,18 +44,7 @@ module.exports = Backbone.Router.extend ({
       $('.headerbox').html(headerHTML.render().el);
       var profileHTML = new ProfileView();
       $('.profilebox').html(profileHTML.render().el);
-      $('.content').find('article').remove();
-
-
-    // var userHTML = new UserCollectionView();
-    // $('#side').html(userHTML.render().el);
-
-    // var favorites = new FavoriteCollection();
-    // favorites.fetch().then(function(data){
-    //   console.log('favorites data', data[0]);
-    //   new FavoritesCollectionView({collection: favorites});
-
-    // });
+      $('.drinkList').find('article').remove();
   },
  loginPage: function(){
    var loginHTML = new LoginView();

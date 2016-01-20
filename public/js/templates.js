@@ -6,7 +6,7 @@ module.exports = {
     "<li><img src='http://www.fillmurray.com/460/300' /></li>",
     "<li><h2>User Name</h2></li>",
     "</ul>",
-    "<h3>Favorite Recipes</h3>",
+    // "<h3>Favorite Recipes</h3>",
     "<section id='recipes'>",
     "</section>",
     "</div>"
@@ -32,7 +32,7 @@ module.exports = {
   ].join(''),
   navigation: [
     "<ul id='nav'>",
-      "<li><h1>alcoh·me</h1></li>",
+      "<li><h1>alcoh<img src='https://d30y9cdsu7xlg0.cloudfront.net/png/76022-200.png'>me</h1></li>",
       "<li><a id='home' href='#home'>Home</a></li>",
       "<li><a id='profile' href='#profile'>My Profile</a></li>",
       "<li><a id='logout' href='#'>Logout</a></li>",
@@ -77,7 +77,7 @@ module.exports = {
  ].join(""),
  login:[
    "<div class='box'>",
-   "<h1 class='title'>alcoh·me</h1>",
+   "<h1 class='title'>alcoh<img src='https://d30y9cdsu7xlg0.cloudfront.net/png/76022-200.png'>me</h1></i>",
    "<input class='username' placeholder='username'></input>",
    "<input type='password' class='password initialPassword' placeholder='password'></input>",
    "<input type='password' class='password confirmPassword hidden' placeholder='confirm password'></input>",

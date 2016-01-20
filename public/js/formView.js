@@ -16,7 +16,7 @@ module.exports = Backbone.View.extend({
   },
   onSubmitIngredients: function(event){
     event.preventDefault();
-
+    $('.drinkList').html("");
     var drinkCollection = new DrinkCollection();
     drinkCollection.fetch().then(function(data) {
       // initialize a new array for the filtered data
@@ -25,6 +25,7 @@ module.exports = Backbone.View.extend({
         for (var i = 0; i < data.length; i++) {
           // sort through the keys within the objects and set nulls to empty strings
           // otherwise the templates would break
+          // thanks Charles for this type of loop
           for(var prop in data[i]){
             if (data[i][prop] == null){
               data[i][prop] = "";
