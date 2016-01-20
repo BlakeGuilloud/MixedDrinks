@@ -3,24 +3,33 @@ var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
+var DrinkCollection = require('./collection');
+var CollectionView = require('./collectionView');
+var LoginView = require('./loginView');
+var FormView = require('./formView');
+var HeaderView = require('./headerView');
 var DrinkView = require('./modelView');
 
 
 module.exports = Backbone.View.extend({
-  el: '.drinkList',
+  el: '#layoutView',
   initialize: function(){
     this.addAllDrinks();
   },
   addOneDrink: function(drinkModel){
     var drinkView = new DrinkView({model: drinkModel});
     this.$el.append(drinkView.render().el);
+    return this;
+
   },
   addAllDrinks: function(){
+  //  console.log('orange');
     _.each(this.collection.models, this.addOneDrink, this);
+
   }
 });
 
-},{"./modelView":17,"backbone":25,"jquery":26,"underscore":27}],2:[function(require,module,exports){
+},{"./collection":5,"./collectionView":6,"./formView":11,"./headerView":12,"./loginView":14,"./modelView":17,"backbone":25,"jquery":26,"underscore":27}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var DrinkModel = require('./model');
 var UserModel = require('./userModel');
@@ -39,23 +48,26 @@ var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var UserView = require('./userView');
+var UserModel = require('./userModel');
+var UserCollection = require('./userCollection');
+var tmpl = require('./templates');
 
 
 module.exports = Backbone.View.extend({
   el: '#side',
   initialize: function(){
-    this.addAllUsers();
+    // this.addAllUsers();
   },
-  addUser: function(userModel) {
+  addOneUser: function(userModel){
     var userView = new UserView({model: userModel});
     this.$el.append(userView.render().el);
   },
-  addAllUsers: function() {
-    _.each(this.collection.models, this.addUser, this);
-  },
+  addAllUsers: function(){
+  
+  }
 });
 
-},{"./userView":24,"backbone":25,"jquery":26,"underscore":27}],4:[function(require,module,exports){
+},{"./templates":20,"./userCollection":21,"./userModel":23,"./userView":24,"backbone":25,"jquery":26,"underscore":27}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');
@@ -80,8 +92,28 @@ module.exports = Backbone.Collection.extend({
 });
 
 },{"./model":16,"backbone":25}],6:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"./modelView":17,"backbone":25,"dup":1,"jquery":26,"underscore":27}],7:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var DrinkView = require('./modelView');
+
+
+module.exports = Backbone.View.extend({
+  el: '.drinkList',
+  initialize: function(){
+    this.addAllDrinks();
+  },
+  addOneDrink: function(drinkModel){
+    var drinkView = new DrinkView({model: drinkModel});
+    this.$el.append(drinkView.render().el);
+  },
+  addAllDrinks: function(){
+    _.each(this.collection.models, this.addOneDrink, this);
+  }
+});
+
+},{"./modelView":17,"backbone":25,"jquery":26,"underscore":27}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 var DrinkModel = require('./model');
 var FavoritesModel = require('./favoritesModel');
@@ -632,8 +664,28 @@ littleUserView: [
 },{}],21:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
 },{"./model":16,"./userModel":23,"backbone":25,"dup":2}],22:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"./userView":24,"backbone":25,"dup":3,"jquery":26,"underscore":27}],23:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var UserView = require('./userView');
+
+
+module.exports = Backbone.View.extend({
+  el: '#side',
+  initialize: function(){
+    this.addAllUsers();
+  },
+  addUser: function(userModel) {
+    var userView = new UserView({model: userModel});
+    this.$el.append(userView.render().el);
+  },
+  addAllUsers: function() {
+    _.each(this.collection.models, this.addUser, this);
+  },
+});
+
+},{"./userView":24,"backbone":25,"jquery":26,"underscore":27}],23:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');

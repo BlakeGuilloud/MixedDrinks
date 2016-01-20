@@ -103,7 +103,7 @@ body {
     margin-top: 40px;
     width: 25%; }
 
-.content {
+.drinkList {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -114,7 +114,6 @@ body {
 
 .profile {
   width: 900px;
-  height: 600px;
   border-radius: 10px;
   background-color: #fecea8;
   margin-left: 400px;
@@ -233,3 +232,10 @@ button {
   color: white;
   width: 40%;
   padding: 10px; }
+
+#recipes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start; }
